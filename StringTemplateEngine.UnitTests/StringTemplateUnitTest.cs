@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net.Mail;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace StringTemplateEngine.UnitTests
@@ -127,6 +126,26 @@ namespace StringTemplateEngine.UnitTests
 
             target.Add("test", "one");
             target.Add("testing", "two");
+
+            Assert.AreEqual("one two two", target.Render());
+        }
+
+        [TestMethod]
+        public void StringTemplateRenderCaseInsensitiveTest1()
+        {
+            target = new StringTemplate("<test> two two");
+
+            target.Add("TEST", "one");
+
+            Assert.AreEqual("one two two", target.Render());
+        }
+
+        [TestMethod]
+        public void StringTemplateRenderCaseInsensitiveTest2()
+        {
+            target = new StringTemplate("<TEST> two two");
+
+            target.Add("test", "one");
 
             Assert.AreEqual("one two two", target.Render());
         }
@@ -305,5 +324,30 @@ namespace StringTemplateEngine.UnitTests
                 Assert.Fail("ArgumentException not thrown");
             }
         }
+
+        [TestMethod]
+        public void StringTemplatAddDuplicateCaseInsensitiveTest()
+        {
+            target = new StringTemplate(String.Empty);
+
+            target.Add("test", "one");
+
+            try
+            {
+                target.Add("TEST", "one");
+
+                Assert.Fail("No exception thrown");
+            }
+            catch (ArgumentException exception)
+            {
+                Assert.AreEqual("Element has already been added.\r\nParameter name: element", exception.Message);
+                Assert.AreEqual("element", exception.ParamName);
+            }
+            catch
+            {
+                Assert.Fail("ArgumentException not thrown");
+            }
+        }
+
     }
 }
