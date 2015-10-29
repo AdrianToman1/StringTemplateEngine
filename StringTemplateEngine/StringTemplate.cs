@@ -72,6 +72,11 @@ namespace StringTemplateEngine
                 throw new ArgumentException("The parameter 'element' cannot be an empty string.", "element");
             }
 
+            if (element[0] == '<' && element[element.Length - 1] == '>')
+            {
+                element = element.Substring(1, element.Length - 2);
+            }
+
             if (ElementData.ContainsKey(element))
             {
                 throw new ArgumentException("Element has already been added.", "element");

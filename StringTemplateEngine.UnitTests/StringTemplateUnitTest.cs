@@ -349,5 +349,20 @@ namespace StringTemplateEngine.UnitTests
             }
         }
 
+        [TestMethod]
+        public void StringTemplatStringAngleBracketsTest()
+        {
+            target = new StringTemplate("<hello> <world>");
+            target.Add("hello", "hello");
+            target.Add("<world>", "world");
+
+            Assert.AreEqual(2, target.ElementData.Count);
+            Assert.IsTrue(target.ElementData.ContainsKey("hello"));
+            Assert.AreEqual("hello", target.ElementData["hello"]);
+            Assert.IsTrue(target.ElementData.ContainsKey("world"));
+            Assert.AreEqual("world", target.ElementData["world"]);
+
+            Assert.AreEqual("hello world", target.Render());
+        }
     }
 }
