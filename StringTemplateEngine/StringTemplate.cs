@@ -22,7 +22,7 @@ namespace StringTemplateEngine
             }
 
             Template = template;
-            ElementData = new Dictionary<String, Object>();
+            ElementData = new Dictionary<String, Object>(StringComparer.InvariantCultureIgnoreCase);
         }
 
         #endregion
