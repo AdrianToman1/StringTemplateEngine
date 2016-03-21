@@ -93,7 +93,7 @@ namespace StringTemplateEngine
 
             foreach (KeyValuePair<String, Object> kvp in ElementData)
             {
-                s = s.Replace(String.Format("<{0}>", kvp.Key), kvp.Value.ToString());
+                s = s.Replace(String.Format("<{0}>", kvp.Key), kvp.Value.ToString(), StringComparison.InvariantCultureIgnoreCase);
             }
 
             return s;

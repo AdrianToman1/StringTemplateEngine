@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="StringTemplateUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringExtensionsUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StringTemplateEngine\StringTemplateEngine.csproj">
