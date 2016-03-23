@@ -50,7 +50,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="StringTemplateUnitTest.cs" />
+    <Compile Include="TokenStreamUnitTests.cs" />
+    <Compile Include="StringTemplateUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringExtensionsUnitTests.cs" />
   </ItemGroup>

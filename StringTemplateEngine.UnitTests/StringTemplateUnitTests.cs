@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace StringTemplateEngine.UnitTests
 {
     [TestClass]
-    public class StringTemplateUnitTest
+    public class StringTemplateUnitTests
     {
         StringTemplate target;
 
