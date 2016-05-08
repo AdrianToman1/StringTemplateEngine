@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace StringTemplateEngine
 {
@@ -89,14 +90,34 @@ namespace StringTemplateEngine
 
         public String Render()
         {
-            String s = Template;
+            TokenStream tokenStream = new TokenStream(template);
 
-            foreach (KeyValuePair<String, Object> kvp in ElementData)
+            StringBuilder sb = new StringBuilder();
+
+            foreach (Token token in tokenStream.Tokens)
             {
-                s = s.Replace(String.Format("<{0}>", kvp.Key), kvp.Value.ToString(), StringComparison.InvariantCultureIgnoreCase);
+                if (token.TokenType == TokenType.Element)
+                {
+                    if (ElementData.ContainsKey(token.Value))
+                    {
+                        sb.Append(ElementData[token.Value].ToString());
+                    }
+                    else
+                    {
+                        sb.Append("<" + token.Value + ">");
+                    }
+                }
+                else if (token.TokenType == TokenType.StringLiteral)
+                {
+                    sb.Append(token.Value);
+                }
+                else
+                {
+                    throw new ArgumentException(String.Format("Unknonw TokenType {0}", token.TokenType.ToString()));
+                }
             }
 
-            return s;
+            return sb.ToString();
         }
 
         #endregion
