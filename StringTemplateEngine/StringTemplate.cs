@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace StringTemplateEngine
 {
@@ -86,6 +87,12 @@ namespace StringTemplateEngine
             {
                 ElementData.Add(element, value);
             }
+        }
+
+
+        public async Task<String> RenderAsync()
+        {
+            return await Task<String>.Run(() => Render());
         }
 
         public String Render()
